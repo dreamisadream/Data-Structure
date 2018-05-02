@@ -1,4 +1,7 @@
 重點擺在紀錄多項式，及 friend operator 的用法
+儲存方式採用 list
+若要自行連接，則在 Term 內多一個 *next 指到下一個的位址即可
+但別忘了，要在 destructor 中 free memory
 
 輸出的部份就隨手帶過
 另外，輸入必須是降冪排列
