@@ -13,18 +13,16 @@ Tree::Tree()
 
 Tree::~Tree()
 {
-    TreeNode *CurrentNode;
     queue<TreeNode*> q_node;
+    TreeNode *CurrentNode = root;
 
-    q_node.push(root);
-    while(!q_node.empty()){
-        CurrentNode = q_node.front();
-        q_node.pop();
+    while(CurrentNode){
         if(CurrentNode->LeftChild)
             q_node.push(CurrentNode->LeftChild);
         if(CurrentNode->RightChild)
             q_node.push(CurrentNode->RightChild);
-
+        CurrentNode = q_node.front();
+        q_node.pop();
         delete CurrentNode;
     }
 }
@@ -291,25 +289,21 @@ void Tree::NonrecPostorder()
     }while(!s_node.empty());
 }
 
-
 void Tree::levelorder()
 {
     if(!root)
         return;
 
     queue <TreeNode *> q_node;
-    TreeNode *CurrentNode;
-
-    q_node.push(root);
-    while(!q_node.empty()){
-        CurrentNode = q_node.front();
-        q_node.pop();
-
+    TreeNode *CurrentNode = root;
+    while(CurrentNode){
         cout << CurrentNode->data << " ";
         if(CurrentNode->LeftChild)
             q_node.push(CurrentNode->LeftChild);
         if(CurrentNode->RightChild)
             q_node.push(CurrentNode->RightChild);
+        CurrentNode = q_node.front();
+        q_node.pop();
     }
 
     cout << endl;
