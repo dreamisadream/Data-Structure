@@ -14,6 +14,7 @@ class Tree
 {
     public:
         Tree();
+        Tree(const Tree&s){root=COPY(s.root)};
         ~Tree();
 
         void InsertNode();
@@ -28,7 +29,12 @@ class Tree
         void NonrecInorder();
         void NonrecPostorder();
         void levelorder();
-
+    
+        TreeNode* COPY(TreeNode *orignode);
+        
+        int operator==(const Tree& s, const Tree& t){
+            return Equal(s.root, t.root);
+        }
 
     private:
         TreeNode *root;
