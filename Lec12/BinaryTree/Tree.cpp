@@ -308,3 +308,15 @@ void Tree::levelorder()
 
     cout << endl;
 }
+
+TreeNode* Tree::COPY(TreeNode* orignode)
+{
+    if(orignode){
+        TreeNode *temp = new TreeNode;
+        temp->data = orignode->data;
+        temp->LeftChild = COPY(orignode->LeftChild);
+        temp->RightChild = COPY(orignode->RightChild);
+        return temp;
+    }
+    else return 0;
+}
