@@ -320,3 +320,13 @@ TreeNode* Tree::COPY(TreeNode* orignode)
     }
     else return 0;
 }
+
+int Equal(TreeNode *a, TreeNode *b)
+{
+    if((!a) && (!b))
+        return 1;
+    if(a&&b && a->data == b->data && Equal(a->LeftChild, b->LeftChild) && Equal(a->RightChild && b->RightChild))
+        return 1;
+    
+    return 0;
+}
