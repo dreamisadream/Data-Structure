@@ -11,7 +11,7 @@ void SWAP(char _str[], int pos1, int pos2)
 
 void perm(char _str[], int length)
 {
-  int a[9];      // 10個char，需要9層loop
+  int a[9];      // 10個char，需要9層loop，第 i 層 loop 控管 str[i] 的 swap
 
   for(a[0] = 0; (a[0] < 10 && length == 9) || a[0] ==0 ; a[0]++)
   {
