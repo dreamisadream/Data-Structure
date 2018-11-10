@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char T[] = "ABABABACA";
+    char P[] = "ABABACA";
+
+    int T_len = strlen(T);
+    int P_len = strlen(P);
+
+    int f[P_len];
+
+    f[0] = 0;
+    for(int i = 1; i<P_len; i++)
+        if(P[i] == P[f[i-1]])
+            f[i] = f[i-1] + 1;
+        else
+            f[i] = 0;
+
+
+    int start, len, end, offset = 0;
+    for(start = 0; start <= T_len - P_len; ){
+
+        for(len = offset; len < P_len; len++)
+            if(T[start+len] != P[len])
+                break;
+
+        if(len == P_len){
+            printf("found at place %d\n", start);
+            return 1;
+        }
+
+        end = start + len;
+
+        // 第一個就不相同
+        if(len == 0){
+            start = start + 1;
+            offset = 0;
+        }
+        else{
+            start = end - f[len-1];
+            offset = f[len-1];
+        }
+    }
+
+    printf("not found!\n");
+}
