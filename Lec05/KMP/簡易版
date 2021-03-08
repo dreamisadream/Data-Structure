@@ -12,12 +12,16 @@ int main()
     int f[P_len];
 
     f[0] = 0;
-    for(int i = 1; i<P_len; i++)
-        if(P[i] == P[f[i-1]])
-            f[i] = f[i-1] + 1;
+    for(int i = 1; i<P_len; i++) {
+        int tmp = f[i-1];
+        while (tmp && P[i] != P[tmp])
+            tmp = f[tmp-1];
+            
+        if (P[i] == P[tmp])
+            f[i] = tmp + 1;
         else
             f[i] = 0;
-
+    }
 
     int start, len, end, offset = 0;
     for(start = 0; start <= T_len - P_len; ){
@@ -31,15 +35,13 @@ int main()
             return 0;
         }
 
-        end = start + len;
-
         // 第一個就不相同
         if(len == 0){
             start = start + 1;
             offset = 0;
         }
         else{
-            start = end - f[len-1];
+            start += len - f[len-1];
             offset = f[len-1];
         }
     }
